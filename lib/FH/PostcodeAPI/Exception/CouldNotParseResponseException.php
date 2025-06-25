@@ -9,16 +9,9 @@ use Psr\Http\Message\ResponseInterface;
  */
 final class CouldNotParseResponseException extends \Exception implements PostcodeApiExceptionInterface
 {
-    /**
-     * @var ResponseInterface
-     */
-    private $response;
+    private ResponseInterface $response;
 
-    /**
-     * @param string $message
-     * @param ResponseInterface $response
-     */
-    public function __construct($message, ResponseInterface $response)
+    public function __construct(string $message, ResponseInterface $response)
     {
         parent::__construct($message);
 

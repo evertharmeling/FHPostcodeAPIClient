@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
+        "php": "^8.2",
         "ext-json": "*",
         "guzzlehttp/psr7": "^2.0",
         "psr/http-client": "^1.0"
@@ -38,5 +38,10 @@
     },
     "scripts": {
         "test": "./vendor/bin/phpunit"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }

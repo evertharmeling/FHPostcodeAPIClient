@@ -9,32 +9,24 @@ use Psr\Http\Message\RequestInterface;
  */
 class ServerErrorException extends \Exception implements PostcodeApiExceptionInterface
 {
-    /**
-     * @var RequestInterface
-     */
-    private $request;
+    private RequestInterface $request;
 
     /**
-     * @param RequestInterface $request
      * @return ServerErrorException
      */
-    public function setRequest($request)
+    public function setRequest(RequestInterface $request)
     {
         $this->request = $request;
 
         return $this;
     }
 
-    /**
-     * @return RequestInterface
-     */
-    public function getRequest()
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }
 
     /**
-     * @param RequestInterface $request
      * @return ServerErrorException
      */
     public static function fromRequest(RequestInterface $request)

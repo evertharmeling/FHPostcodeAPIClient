@@ -19,25 +19,13 @@ use Psr\Http\Message\ResponseInterface;
  */
 class Client
 {
-    public const POSTCODES_SORT_DISTANCE = 'distance';
-
-    /**
-     * @var string|null
-     */
-    private $url = 'https://api.postcodeapi.nu';
-
-    /**
-     * @var string
-     */
-    private $version = 'v2';
-
-    /**
-     * @var ClientInterface
-     */
-    private $httpClient;
+    public const string POSTCODES_SORT_DISTANCE = 'distance';
+    private string $url = 'https://api.postcodeapi.nu';
+    private string $version = 'v2';
+    private ClientInterface $httpClient;
 
 
-    public function __construct(ClientInterface $httpClient, string $url = null)
+    public function __construct(ClientInterface $httpClient, ?string $url = null)
     {
         if (null !== $url) {
             $this->url = $url;
@@ -47,13 +35,9 @@ class Client
     }
 
     /**
-     * @param string|null $postcode
-     * @param string|null $number
-     * @param int $from
-     *
      * @return \stdClass
      */
-    public function getAddresses($postcode = null, $number = null, $from = 0)
+    public function getAddresses(?string $postcode = null, ?string $number = null, int $from = 0)
     {
         return $this->get('/addresses/', [
             'postcode' => $postcode,
@@ -63,33 +47,25 @@ class Client
     }
 
     /**
-     * @param string $id
-     *
      * @return \stdClass
      */
-    public function getAddress($id)
+    public function getAddress(string $id)
     {
         return $this->get(sprintf('/addresses/%s', $id));
     }
 
     /**
-     * @param string $postcode
-     *
      * @return \stdClass
      */
-    public function getPostcodeDataByPostcode($postcode)
+    public function getPostcodeDataByPostcode(string $postcode)
     {
         return $this->get('/postcodes/' . $postcode);
     }
 
     /**
-     * @param string $latitude
-     * @param string $longitude
-     * @param string $sort
-     *
      * @return \stdClass
      */
-    public function getPostcodesByCoordinates($latitude, $longitude, $sort = self::POSTCODES_SORT_DISTANCE)
+    public function getPostcodesByCoordinates(string $latitude, string $longitude, string $sort = self::POSTCODES_SORT_DISTANCE)
     {
         return $this->get('/postcodes/', [
             'coords' => [
